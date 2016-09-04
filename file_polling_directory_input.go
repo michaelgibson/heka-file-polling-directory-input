@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"github.com/bbangert/toml"
 	. "github.com/mozilla-services/heka/pipeline"
-//	"github.com/mozilla-services/heka/plugins/file"
+	"github.com/mozilla-services/heka/plugins/file"
 	"os"
 	"path/filepath"
 )
@@ -13,7 +13,7 @@ import (
 type FilePollingEntry struct {
 	ir       InputRunner
 	maker    MutableMaker
-	config   *FilePollingInputConfig
+	config   *file.FilePollingInputConfig
 	fileName string
 }
 
@@ -41,7 +41,7 @@ type FilePollingDirectoryInput struct {
 
 // Helper function for manually comparing structs since slice attributes mean
 // we can't use `==`.
-func (lsdi *FilePollingDirectoryInput) Equals(runningEntry *FilePollingInputConfig, otherEntry *FilePollingInputConfig) bool {
+func (lsdi *FilePollingDirectoryInput) Equals(runningEntry *file.FilePollingInputConfig, otherEntry *file.FilePollingInputConfig) bool {
 	if runningEntry.FilePath != otherEntry.FilePath {
 		return false
 	}
@@ -201,7 +201,7 @@ func (lsdi *FilePollingDirectoryInput) logDirWalkFunc(path string, info os.FileI
 		if err != nil {
 			return nil, err
 		}
-		filePollingInputConfig := config.(*FilePollingInputConfig)
+		filePollingInputConfig := config.(*file.FilePollingInputConfig)
 		return filePollingInputConfig, nil
 	}
 	config, err := prepConfig()
@@ -209,7 +209,7 @@ func (lsdi *FilePollingDirectoryInput) logDirWalkFunc(path string, info os.FileI
 		lsdi.ir.LogError(fmt.Errorf("prepping config: %s", err.Error()))
 		return nil
 	}
-	entry.config = config.(*FilePollingInputConfig)
+	entry.config = config.(*file.FilePollingInputConfig)
 	entry.maker.SetPrepConfig(prepConfig)
 
 	runner, err := entry.maker.MakeRunner("")
