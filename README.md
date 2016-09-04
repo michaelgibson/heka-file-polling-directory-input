@@ -72,12 +72,12 @@ Example:
 To Build
 ========
 
-  See [Building *hekad* with External Plugins](http://hekad.readthedocs.org/en/latest/installing.html#build-include-externals)
-  for compiling in plugins.
+See [Building *hekad* with External Plugins](http://hekad.readthedocs.org/en/latest/installing.html#build-include-externals)
+for compiling in plugins.
 
-  Edit cmake/plugin_loader.cmake file and add
+Edit cmake/plugin_loader.cmake file and add
 
-      add_external_plugin(git https://github.com/michaelgibson/heka-file-polling-directory-input master)
+    add_external_plugin(git https://github.com/michaelgibson/heka-file-polling-directory-input master)
 
-  Build Heka:
-  	. ./build.sh
+Build Heka:
+	. ./build.sh
