@@ -30,11 +30,11 @@ Ex.
 
 	[memprof]  
 	type = "FilePollingInput"  
-  file_path = "/proc/meminfo"
+  	file_path = "/proc/meminfo"
 	and  
 	[cpuprof]  
 	type = "FilePollingInput"
-  file_path = "/proc/cpuinfo"
+  	file_path = "/proc/cpuinfo"
 
 
 Each config file must have a '.toml' extension. Each file which meets these criteria,
